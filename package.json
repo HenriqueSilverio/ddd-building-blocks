@@ -1,0 +1,47 @@
+{
+  "name": "ddd-building-blocks",
+  "version": "1.0.0",
+  "description": "Domain-Driven Design tactical modeling components",
+  "engines": {
+    "node": "^16.14.2",
+    "npm": "^8.5.0"
+  },
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "start:dev": "ts-node-dev --require dotenv/config src/index.ts",
+    "test": "jest",
+    "prepare": "[ ${CI} ] || husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HenriqueSilverio/ddd-building-blocks.git"
+  },
+  "author": "Henrique Silvério",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "require-env": "^0.2.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@tsconfig/node16": "^1.0.2",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.25",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.3.8",
+    "ts-jest": "^27.1.4",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  }
+}
