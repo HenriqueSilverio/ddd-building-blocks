@@ -15,6 +15,7 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "max-len": ["error", { "code": 120 }],
     "semi": ["error", "never"],
     "@typescript-eslint/semi": ["error", "never"]
   },
