@@ -9,6 +9,8 @@ Dockerfile
 .dockerignore
 docker-compose.yml
 
+coverage
+
 .editorconfig
 
 .eslintcache

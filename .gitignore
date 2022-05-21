@@ -2,6 +2,7 @@ dist
 .env
 .idea
 .vscode
+coverage
 .DS_Store
 yarn.lock
 .eslintcache
