@@ -45,4 +45,21 @@ describe('UUID', () => {
       expect(c.equals(d)).toBe(false)
     })
   })
+  describe('Instances with empty values', () => {
+    it('Should be not equal', () => {
+      const a = UUID.create()
+
+      let b: unknown
+
+      expect(a.equals(b as UUID)).toBe(false)
+
+      b = null
+
+      expect(a.equals(b as UUID)).toBe(false)
+
+      b = {}
+
+      expect(a.equals(b as UUID)).toBe(false)
+    })
+  })
 })

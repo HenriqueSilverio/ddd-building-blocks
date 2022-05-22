@@ -10,6 +10,14 @@ export default abstract class ValueObject<T> {
   public abstract valueOf(): unknown
 
   public equals(other: ValueObject<T>): boolean {
+    if (other === undefined || other === null) {
+      return false
+    }
+
+    if (other.props === undefined) {
+      return false
+    }
+
     return JSON.stringify(this.props) === JSON.stringify(other.props)
   }
 }
