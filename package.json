@@ -11,7 +11,7 @@
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "start": "npm run build && node --require dotenv/config dist/index.js",
     "start:dev": "ts-node-dev --require dotenv/config src/index.ts",
-    "test": "jest",
+    "test": "jest --collectCoverage",
     "prepare": "[ ${CI} ] || husky install"
   },
   "repository": {
