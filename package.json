@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Domain-Driven Design tactical modeling components",
   "engines": {
-    "node": "^16.14.2",
-    "npm": "^8.5.0"
+    "node": "^18.12.1",
+    "npm": "^8.19.2"
   },
   "main": "src/index.ts",
   "scripts": {
