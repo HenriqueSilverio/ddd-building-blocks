@@ -1,7 +1,7 @@
-import Entity from './Entity'
+import Entity, { Comparable } from './Entity'
 import Event from '../Event/Event'
 
-export default abstract class Aggregate<Props> extends Entity<Props> {
+export default abstract class Aggregate<ID extends Comparable> extends Entity<ID> {
   private readonly events: Array<Event> = []
 
   protected addEvent(event: Event): void {

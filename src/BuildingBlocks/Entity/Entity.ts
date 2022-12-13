@@ -1,16 +1,17 @@
-import UUID from '../ValueObject/UUID'
+export interface Comparable {
+  equals(other: Comparable): boolean
+}
 
-export default abstract class Entity<Props> {
-  protected readonly uuid: UUID
+export default abstract class Entity<ID extends Comparable> {
+  public readonly id: ID
 
-  public readonly props: Props
-
-  constructor(props: Props, uuid?: UUID) {
-    this.uuid = uuid || UUID.create()
-    this.props = { ...props }
+  constructor(id?: ID) {
+    this.id = id || this.nextID()
   }
 
-  public equals(other: Entity<Props>): boolean {
+  protected abstract nextID(): ID
+
+  public equals(other: Entity<ID>): boolean {
     if (!(other instanceof Entity)) {
       return false
     }
@@ -19,6 +20,6 @@ export default abstract class Entity<Props> {
       return true
     }
 
-    return this.uuid.equals(other.uuid)
+    return this.id.equals(other.id)
   }
 }
