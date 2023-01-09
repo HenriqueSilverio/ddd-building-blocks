@@ -1,7 +1,7 @@
 #
 # Stage 1: build
 #
-FROM node:18.12.1-alpine@sha256:9eff44230b2fdcca57a73b8f908c8029e72d24dd05cac5339c79d3dedf6b208b AS build
+FROM node:18.13.0-alpine@sha256:b3f383c13d71066a4e2380d42f4563ac14ac76b3035a5bea4db84209e14665d5 AS build
 
 USER node
 
@@ -20,7 +20,7 @@ RUN npm run build
 #
 # Stage 2: clean
 #
-FROM node:18.12.1-alpine@sha256:9eff44230b2fdcca57a73b8f908c8029e72d24dd05cac5339c79d3dedf6b208b AS clean
+FROM node:18.13.0-alpine@sha256:b3f383c13d71066a4e2380d42f4563ac14ac76b3035a5bea4db84209e14665d5 AS clean
 
 USER node
 
@@ -30,12 +30,12 @@ WORKDIR /home/node
 
 COPY --chown=node:node ["package.json", "package-lock.json", "./"]
 
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 #
 # Stage 3: production
 #
-FROM node:18.12.1-alpine@sha256:9eff44230b2fdcca57a73b8f908c8029e72d24dd05cac5339c79d3dedf6b208b
+FROM node:18.13.0-alpine@sha256:b3f383c13d71066a4e2380d42f4563ac14ac76b3035a5bea4db84209e14665d5
 
 ARG USERNAME=nonroot
 ARG USERHOME=/home/${USERNAME}
