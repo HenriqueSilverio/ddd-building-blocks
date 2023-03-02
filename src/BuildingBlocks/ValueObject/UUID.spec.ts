@@ -9,13 +9,10 @@ describe('UUID', () => {
     let systemUnderTest = UUID.create()
 
     expect(systemUnderTest).toBeInstanceOf(UUID)
-    expect(systemUnderTest.valueOf()).toBeTruthy()
-    expect(typeof systemUnderTest.valueOf()).toBe('string')
 
-    const aRawUUID = randomUUID()
-    systemUnderTest = UUID.create(aRawUUID)
+    systemUnderTest = UUID.create(randomUUID())
 
-    expect(systemUnderTest.valueOf()).toBe(aRawUUID)
+    expect(systemUnderTest).toBeInstanceOf(UUID)
   })
 
   test('UUID.equals', () => {
@@ -38,5 +35,17 @@ describe('UUID', () => {
 
     systemUnderTestC = UUID.create()
     expect(systemUnderTestA.equals(systemUnderTestC as UUID)).toBe(false)
+  })
+
+  test('UUID.valueOf', () => {
+    let systemUnderTest = UUID.create()
+
+    expect(systemUnderTest.valueOf()).toBeTruthy()
+    expect(typeof systemUnderTest.valueOf()).toBe('string')
+
+    const aRawUUID = randomUUID()
+    systemUnderTest = UUID.create(aRawUUID)
+
+    expect(systemUnderTest.valueOf()).toBe(aRawUUID)
   })
 })
