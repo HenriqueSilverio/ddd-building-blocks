@@ -1,15 +1,13 @@
 import Comparable from '../ValueObject/Comparable'
 
-export default abstract class Entity<ID extends Comparable> {
-  public readonly id: ID
+export default abstract class Entity<TIdentity extends Comparable> {
+  public readonly identity: TIdentity
 
-  constructor(id?: ID) {
-    this.id = id || this.nextID()
+  constructor(identity: TIdentity) {
+    this.identity = identity
   }
 
-  protected abstract nextID(): ID
-
-  public equals(other: Entity<ID>): boolean {
+  public equals(other: Entity<TIdentity>): boolean {
     if (!(other instanceof Entity)) {
       return false
     }
@@ -18,6 +16,6 @@ export default abstract class Entity<ID extends Comparable> {
       return true
     }
 
-    return this.id.equals(other.id)
+    return this.identity.equals(other.identity)
   }
 }
