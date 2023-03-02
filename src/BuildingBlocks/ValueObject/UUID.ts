@@ -13,14 +13,16 @@ export default class UUID extends ValueObject<Props> {
 
   private static readonly regExp = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
 
-  public static create(props?: Props) {
-    if (props?.value) {
-      if (!UUID.regExp.test(props.value)) {
-        throw new Error('Invalid UUID')
-      }
-      return new UUID({ value: props.value })
+  public static create(value?: string) {
+    if (!value) {
+      return new UUID({ value: randomUUID() })
     }
-    return new UUID({ value: randomUUID() })
+
+    if (!UUID.regExp.test(value)) {
+      throw new Error('Invalid UUID')
+    }
+
+    return new UUID({ value })
   }
 
   public valueOf(): string {

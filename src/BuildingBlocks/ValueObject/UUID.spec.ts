@@ -4,7 +4,7 @@ import UUID from './UUID'
 
 describe('UUID', () => {
   test('UUID.create', () => {
-    expect(() => UUID.create({ value: 'Invalid' })).toThrow()
+    expect(() => UUID.create('Invalid')).toThrow()
 
     let systemUnderTest = UUID.create()
 
@@ -13,7 +13,7 @@ describe('UUID', () => {
     expect(typeof systemUnderTest.valueOf()).toBe('string')
 
     const aRawUUID = randomUUID()
-    systemUnderTest = UUID.create({ value: aRawUUID })
+    systemUnderTest = UUID.create(aRawUUID)
 
     expect(systemUnderTest.valueOf()).toBe(aRawUUID)
   })
@@ -21,8 +21,8 @@ describe('UUID', () => {
   test('UUID.equals', () => {
     const aRawUUID = randomUUID()
 
-    const systemUnderTestA = UUID.create({ value: aRawUUID })
-    const systemUnderTestB = UUID.create({ value: aRawUUID })
+    const systemUnderTestA = UUID.create(aRawUUID)
+    const systemUnderTestB = UUID.create(aRawUUID)
     let systemUnderTestC: unknown
 
     expect(systemUnderTestA.equals(systemUnderTestB)).toBe(true)
