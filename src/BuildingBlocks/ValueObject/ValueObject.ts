@@ -1,8 +1,12 @@
-export default abstract class ValueObject<T> {
+import Comparable from './Comparable'
+
+export default abstract class ValueObject<T> implements Comparable {
   public readonly props: T
 
   constructor(props: T) {
-    this.props = structuredClone(props)
+    this.props = {
+      ...props,
+    }
   }
 
   public abstract valueOf(): unknown

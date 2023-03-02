@@ -3,63 +3,40 @@ import { randomUUID } from 'crypto'
 import UUID from './UUID'
 
 describe('UUID', () => {
-  describe('Without params', () => {
-    it('Random UUID', () => {
-      const instance = UUID.create()
-      expect(instance.valueOf()).toBeTruthy()
-    })
-  })
-  describe('Param with empty ID', () => {
-    it('Random UUID', () => {
-      const instance = UUID.create({ id: '' })
-      expect(instance.valueOf()).toBeTruthy()
-    })
-  })
-  describe('Param with valid UUID', () => {
-    it('Use passed UUID', () => {
-      const id = randomUUID()
-      const instance = UUID.create({ id })
-      expect(instance.valueOf()).toBe(id)
-    })
-  })
-  describe('Param with invalid UUID', () => {
-    it('Should throws', () => {
-      expect(() => UUID.create({ id: 'invalid' })).toThrow()
-    })
-  })
-  describe('Instances with same IDs', () => {
-    it('Should be equal', () => {
-      const id = randomUUID()
-      const a = UUID.create({ id })
-      const b = UUID.create({ id })
-      expect(a.equals(b)).toBe(true)
-    })
-  })
-  describe('Instances with different IDs', () => {
-    it('Should be not equal', () => {
-      const a = UUID.create()
-      const b = UUID.create()
-      expect(a.equals(b)).toBe(false)
-      const c = UUID.create({ id: randomUUID() })
-      const d = UUID.create({ id: randomUUID() })
-      expect(c.equals(d)).toBe(false)
-    })
-  })
-  describe('Instances with empty values', () => {
-    it('Should be not equal', () => {
-      const a = UUID.create()
+  test('UUID.create', () => {
+    expect(() => UUID.create({ value: 'Invalid' })).toThrow()
 
-      let b: unknown
+    let systemUnderTest = UUID.create()
 
-      expect(a.equals(b as UUID)).toBe(false)
+    expect(systemUnderTest).toBeInstanceOf(UUID)
+    expect(systemUnderTest.valueOf()).toBeTruthy()
+    expect(typeof systemUnderTest.valueOf()).toBe('string')
 
-      b = null
+    const aRawUUID = randomUUID()
+    systemUnderTest = UUID.create({ value: aRawUUID })
 
-      expect(a.equals(b as UUID)).toBe(false)
+    expect(systemUnderTest.valueOf()).toBe(aRawUUID)
+  })
 
-      b = {}
+  test('UUID.equals', () => {
+    const aRawUUID = randomUUID()
 
-      expect(a.equals(b as UUID)).toBe(false)
-    })
+    const systemUnderTestA = UUID.create({ value: aRawUUID })
+    const systemUnderTestB = UUID.create({ value: aRawUUID })
+    let systemUnderTestC: unknown
+
+    expect(systemUnderTestA.equals(systemUnderTestB)).toBe(true)
+
+    systemUnderTestC = undefined
+    expect(systemUnderTestA.equals(systemUnderTestC as UUID)).toBe(false)
+
+    systemUnderTestC = null
+    expect(systemUnderTestA.equals(systemUnderTestC as UUID)).toBe(false)
+
+    systemUnderTestC = {}
+    expect(systemUnderTestA.equals(systemUnderTestC as UUID)).toBe(false)
+
+    systemUnderTestC = UUID.create()
+    expect(systemUnderTestA.equals(systemUnderTestC as UUID)).toBe(false)
   })
 })

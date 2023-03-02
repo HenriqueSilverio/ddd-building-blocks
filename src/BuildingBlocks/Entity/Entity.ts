@@ -1,6 +1,4 @@
-export interface Comparable {
-  equals(other: Comparable): boolean
-}
+import Comparable from '../ValueObject/Comparable'
 
 export default abstract class Entity<ID extends Comparable> {
   public readonly id: ID
