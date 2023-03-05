@@ -1,13 +1,16 @@
 import Comparable from '../ValueObject/Comparable'
 
-export default abstract class Entity<TIdentity extends Comparable> {
+export default abstract class Entity<TIdentity extends Comparable, TProps> {
   public readonly identity: TIdentity
 
-  constructor(identity: TIdentity) {
+  public readonly props: TProps
+
+  constructor(identity: TIdentity, props: TProps) {
     this.identity = identity
+    this.props = props
   }
 
-  public equals(other: Entity<TIdentity>): boolean {
+  public equals(other: Entity<TIdentity, TProps>): boolean {
     if (!(other instanceof Entity)) {
       return false
     }
