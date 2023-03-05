@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:15.2-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    ports:
+      - 5432:5432
+  pgadmin:
+    depends_on:
+      - postgres
+    image: dpage/pgadmin4:6.20
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@host.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+    ports:
+      - 5480:80
+  ddd-blocks:
+    build: .
+    image: ddd-blocks
+    env_file: .env
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
