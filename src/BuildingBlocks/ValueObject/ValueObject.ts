@@ -1,4 +1,5 @@
 import Comparable from './Comparable'
+import Serializer from '../Utils/Serializer'
 
 export default abstract class ValueObject<T> implements Comparable {
   public readonly props: T
@@ -20,6 +21,10 @@ export default abstract class ValueObject<T> implements Comparable {
       return false
     }
 
-    return JSON.stringify(this.props) === JSON.stringify(other.props)
+    return this.serialize() === other.serialize()
+  }
+
+  private serialize() {
+    return Serializer.stringify(this.props)
   }
 }
