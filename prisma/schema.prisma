@@ -9,3 +9,11 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Author {
+  id BigInt @id @default(autoincrement())
+  uuid String @db.Uuid @unique @default(uuid())
+  name String
+  createdAt DateTime @db.Timestamptz() @default(now())
+  updatedAt DateTime @db.Timestamptz() @updatedAt
+}
