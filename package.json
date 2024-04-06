@@ -30,7 +30,7 @@
     "@tsconfig/node18": "^18.2.3",
     "@types/jest": "^29.5.12",
     "@types/json-bigint": "^1.0.4",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.12.5",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.1.1",
     "dotenv": "^16.4.5",
